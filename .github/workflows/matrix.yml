@@ -7,9 +7,17 @@ jobs:
       matrix:
         node-version: [22, 24]
         operating-system: [ubuntu-latest, windows-latest, macos-latest]
+        include:
+          - node-version: 24
+            operating-system: ubuntu-latest
+          - node-version: 22
+            operating-system: windows-latest
+        exclude:
+          - node-version: 22
+            operating-system: macos-latest
     runs-on: ${{ matrix.operating-system }}
     steps:
-      - name: Get code
+      - name: Get codef
         uses: actions/checkout@v4
       - name: Install Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
